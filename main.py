@@ -9,16 +9,25 @@ class aboutme:
     def __init__(self):
         pass
     def connectdb(self):
+        '''
+        This function is used to connect to database and it returns a collection object from mongodb
+        :return:
+        '''
         uri="mongodb+srv://Samarth:Samarth@cluster0.3kqbc.mongodb.net/"
         client=MongoClient(uri)
         client.list_database_names()
         db=client['Aboutme']
         c=db['Userdata']
-
-
         print("DB connection successful")
         return c
     def authenticate(self,c,name,key):
+        '''
+        this function suthenticates user with the passcode
+        :param c:
+        :param name:
+        :param key:
+        :return:
+        '''
         cursor = c.find_one({"name": name}, {"skey": 1})
         if str(key) == str(cursor["skey"]):
             print("Authentication Successful")
@@ -36,12 +45,20 @@ class aboutme:
         s=str(z)+str(len(name))+str(age)
         return s'''
     def displayall(self):
+        '''
+        this function displays all the entries in the datasse
+        :return:
+        '''
         c = self.connectdb()
         cursor = c.find({},{"_id":0,"skey":0})
         for x in cursor:
             print(dumps(x))
         return
     def querybyname(self):
+        '''
+        this functiom is used to query the information by name
+        :return:
+        '''
         print("Enter name :")
         name=str(input())
         c=self.connectdb()
@@ -51,6 +68,10 @@ class aboutme:
         return
 
     def querybyproffesion(self):
+        '''
+        this function is used to query the information by profession
+        :return:
+        '''
         print("Enter Profession :")
         prof=str(input())
         c=self.connectdb()
@@ -58,6 +79,10 @@ class aboutme:
         for x in cursor:
             print(dumps(x))
     def querybycontact(self):
+        '''
+        this function is used to query the information by contact
+        :return:
+        '''
         print("Enter Contact:")
         contact=str(input())
         c=self.connectdb()
@@ -65,6 +90,10 @@ class aboutme:
         for x in cursor:
             print(dumps(x))
     def querybysecretkey(self):
+        '''
+        this function is used to query the data by passcode
+        :return:
+        '''
         print("Enter secret key : ")
         sk=str(input())
         c=self.connectdb()
@@ -73,6 +102,10 @@ class aboutme:
             print(dumps(x))
 
     def add_data(self):
+        '''
+        this function is used add new enteries into the db
+        :return:
+        '''
         print("-----------ADD ABOUT ME-----------")
         print(" Enter your name  : ")
         name=str(input())
@@ -109,6 +142,10 @@ class aboutme:
         for x in cursor:
             print(dumps(x))
     def delete_data(self):
+        '''
+        this function is used to delete about me information
+        :return:
+        '''
         print("----Delete Window----")
         print("Enter Your name : ")
         name=str(input())
@@ -122,6 +159,10 @@ class aboutme:
 
 
     def edit_data(self):
+        '''
+        this function is used to update the information about me
+        :return:
+        '''
         print("-----Edit window-----")
         print("Enter your name : ")
         oldname=str(input())
@@ -184,4 +225,3 @@ if __name__ == '__main__':
 
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
-#rm433 enm644 nm443
