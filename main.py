@@ -1,8 +1,3 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 from bson.json_util import dumps
 from pymongo import MongoClient
 class aboutme:
@@ -220,8 +215,3 @@ if __name__ == '__main__':
                     obj.querybycontact()
         elif n==6:
             obj.querybysecretkey()
-
-
-
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
