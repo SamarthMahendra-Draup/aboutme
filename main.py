@@ -2,12 +2,9 @@ from bson.json_util import dumps
 from pymongo import MongoClient
 import random
 import string
-
-
 class Aboutme:
     def __init__(self):
-        self.c = None
-        self.connectdb()
+        self.c = self.connectdb()
 
     def connectdb(self):
         # This function is used to connect to database and it returns a collection object from mongodb
@@ -15,9 +12,8 @@ class Aboutme:
         client = MongoClient(uri)
         client.list_database_names()
         db = client['Aboutme']
-        self.c = db['Userdata']
         print("DB connection successful")
-        return
+        return  db['Userdata']
 
     def authenticate(self, fname, fkey):
         # this function suthenticates user with the passcode
